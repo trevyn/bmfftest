@@ -24,12 +24,11 @@ impl Box {
  }
 }
 
-pub fn main() {
- println!("Hello, world!");
+pub fn main() -> Result<(), std::boxed::Box<dyn std::error::Error>> {
  let data = include_bytes!("/Users/e/Desktop/ep2.mp4");
  let mut offset: usize = 0;
  loop {
-  let (_, b) = Box::parse(&data[offset..]).unwrap();
+  let (_, b) = Box::parse(&data[offset..])?;
   dbg!(&b);
   offset += b.size as usize;
  }
